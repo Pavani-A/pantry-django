@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pantry Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .container {
+            width: 50%;
+            margin: auto;
+        }
+
+        .card {
+            background: white;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .expiry {
+            color: red;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🍽️ Pantry Items</h1>
+
+    <div class="container">
+        {% for item in products %}
+            <div class="card">
+                <h3>{{ item.name }}</h3>
+                <p>Quantity: {{ item.quantity }}</p>
+                <p class="expiry">Expires: {{ item.exp_date }}</p>
+            </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>
