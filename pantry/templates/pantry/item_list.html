@@ -112,6 +112,10 @@
         .delete:hover {
             background-color: #c0392b;
         }
+        .navbar span {
+    color: #ecf0f1;
+    font-weight: bold;
+}
     </style>
 </head>
 
@@ -119,10 +123,15 @@
 
     <!-- 🔥 Navigation -->
     <div class="navbar">
-        <a href="/">🏠 Home</a>
-        <a href="/view/">📦 View Items</a>
-        <a href="/add/">➕ Add Item</a>
-    </div>
+    <a href="/">🏠 Home</a>
+    <a href="/view/">📦 View Items</a>
+    <a href="/add/">➕ Add Item</a>
+
+    {% if user.is_authenticated %}
+        <span>👤 {{ user.username }}</span>
+        <a href="/logout/">🚪 Logout</a>
+    {% endif %}
+</div>
 
     <!-- 🔥 Success Messages -->
     {% if messages %}

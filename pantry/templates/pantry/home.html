@@ -33,18 +33,26 @@
         }
 
         .btn {
-            display: inline-block;
-            padding: 14px 25px;
+            display: block;
+            padding: 14px;
             border-radius: 8px;
             text-decoration: none;
             font-weight: bold;
-            background-color: #3498db;
-            color: white;
+            margin: 10px 0;
             transition: 0.3s;
         }
 
+        .login {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .signup {
+            background-color: #2ecc71;
+            color: white;
+        }
+
         .btn:hover {
-            background-color: #2980b9;
             transform: scale(1.05);
         }
 
@@ -61,12 +69,15 @@
     <div class="container">
         <p class="info"></p>
         <h1>🍱 Pantry Management</h1>
+
         <p class="subtitle">
             Manage your pantry items, track quantities, and never miss expiry dates.
         </p>
 
-        <!-- 🔥 Single main action -->
-        <a href="/view/" class="btn">📦 Go to Pantry</a>
+        <!-- 🔥 Correct flow buttons -->
+        <a href="/login/" class="btn login">🔐 Login</a>
+        <a href="/signup/" class="btn signup">📝 Sign Up</a>
+
     </div>
 
 </body>
