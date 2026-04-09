@@ -1,8 +1,7 @@
 from django.contrib import admin
-from django.urls import path
-from pantry.views import item_list   # <-- direct import
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', item_list),  # <-- DIRECT mapping
+    path('', include('pantry.urls')),  # 👈 sends everything to app
 ]
