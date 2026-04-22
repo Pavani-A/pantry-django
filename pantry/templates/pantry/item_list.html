@@ -116,6 +116,59 @@
     color: #ecf0f1;
     font-weight: bold;
 }
+
+/* 🔔 Popup */
+.popup {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+    background: white;
+    padding: 20px;
+    width: 320px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    z-index: 1000;
+}
+
+.popup-content {
+    text-align: center;
+}
+
+.close {
+    float: right;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* 🔔 Popup */
+.popup {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+    background: white;
+    padding: 20px;
+    width: 320px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    z-index: 1000;
+}
+
+.popup-content {
+    text-align: center;
+}
+
+.close {
+    float: right;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.popup ul {
+    list-style: none;
+    padding: 0;
+}
     </style>
 </head>
 
@@ -126,12 +179,28 @@
     <a href="/">🏠 Home</a>
     <a href="/view/">📦 View Items</a>
     <a href="/add/">➕ Add Item</a>
-
+    <a href="/recipes/">🍲 Recipes</a>
     {% if user.is_authenticated %}
         <span>👤 {{ user.username }}</span>
         <a href="/logout/">🚪 Logout</a>
     {% endif %}
 </div>
+<!-- 🔥 Expiring Items Popup -->
+{% if expiring_items %}
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <span class="close" onclick="closePopup()">&times;</span>
+
+        <h3>⚠️ Expiring Soon</h3>
+
+        <ul>
+            {% for item in expiring_items %}
+                <li>{{ item.name }} ({{ item.exp_date|date:"M d" }})</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endif %}
 
     <!-- 🔥 Success Messages -->
     {% if messages %}
@@ -184,7 +253,13 @@
                 msg.style.display = 'none';
             }
         }, 3000);
+        
     </script>
+    <script>
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+}
+</script>
 
 </body>
 </html>

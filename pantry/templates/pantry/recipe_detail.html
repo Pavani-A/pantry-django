@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recipe Detail</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+        }
+
+        /* 🔹 Navbar */
+        .navbar {
+            background-color: #2c3e50;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* 🔥 MAIN LAYOUT */
+        .main-container {
+            display: flex;
+            gap: 20px;
+            width: 90%;
+            margin: 20px auto;
+        }
+
+        /* LEFT SIDE */
+        .left {
+            flex: 70%;
+        }
+
+        /* RIGHT SIDE */
+        .right {
+            flex: 30%;
+        }
+
+        /* 🔥 Main Card */
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* 🎥 Main Image */
+        .main-img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        /* 📖 Instructions */
+        .instructions {
+            margin-top: 20px;
+        }
+
+        .instructions ul {
+            padding-left: 20px;
+        }
+
+        .instructions li {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        /* 👉 Sidebar */
+        .side-card {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .side-card img {
+            width: 100px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .side-card p {
+            margin: 0;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .side-card a {
+            font-size: 12px;
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        /* 🔙 Back Button */
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .back-btn:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 🔹 Navbar -->
+    <div class="navbar">
+        <a href="/">🏠 Home</a>
+        <a href="/view/">📦 Pantry</a>
+        <a href="/add/">➕ Add Item</a>
+        <a href="/recipes/">🍲 Recipes</a>
+        <a href="/logout/">🚪 Logout</a>
+    </div>
+
+    <h1>🍽️ {{ recipe.strMeal }}</h1>
+
+    <!-- 🔥 MAIN CONTAINER -->
+    <div class="main-container">
+
+        <!-- LEFT SIDE -->
+        <div class="left">
+
+            <div class="card">
+
+                <img src="{{ recipe.strMealThumb }}" class="main-img">
+
+                <div class="instructions">
+                    <h3>📖 Instructions</h3>
+
+                    <ul>
+                        {% for step in instructions %}
+                            {% if step %}
+                                <li>{{ step }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <a href="/recipes/" class="back-btn">⬅ Back to Recipes</a>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT SIDE (YouTube-like sidebar) -->
+        <div class="right">
+
+            <h3>🍲 Related Recipes</h3>
+
+            {% for item in related_recipes %}
+            <div class="side-card">
+                <img src="{{ item.strMealThumb }}">
+                <div>
+                    <p>{{ item.strMeal }}</p>
+                    <a href="/recipe/{{ item.idMeal }}/">View</a>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</body>
+</html>
